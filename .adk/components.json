@@ -1,0 +1,51 @@
+{
+  "agents": [
+    {
+      "name": "homeowner",
+      "module": "instabids.agents.homeowner.agent",
+      "description": "Helps homeowners define and manage home improvement projects",
+      "class": "HomeownerAgent"
+    },
+    {
+      "name": "bid_card",
+      "module": "instabids.agents.bid_card.agent",
+      "description": "Generates structured bid cards from project details",
+      "class": "BidCardAgent"
+    },
+    {
+      "name": "outbound_recruiter",
+      "module": "instabids.agents.outbound_recruiter.agent",
+      "description": "Matches projects with suitable contractors and sends invitations",
+      "class": "OutboundRecruiterAgent"
+    },
+    {
+      "name": "contractor",
+      "module": "instabids.agents.contractor.agent",
+      "description": "Assists contractors in reviewing projects and formulating bids",
+      "class": "ContractorAgent"
+    },
+    {
+      "name": "prompt_selector",
+      "module": "instabids.agents.meta.prompt_selector",
+      "description": "Selects appropriate prompts based on context",
+      "class": "PromptSelectorAgent"
+    },
+    {
+      "name": "core_orchestrator",
+      "module": "instabids.agents.meta.core_orchestrator",
+      "description": "Orchestrates all other agents for complex workflows",
+      "class": "CoreOrchestratorAgent"
+    }
+  ],
+  "session_service": null,
+  "artifact_store": {
+    "type": "local",
+    "path": "./artifacts"
+  },
+  "config": {
+    "default_model": "gemini-2.0-flash-exp",
+    "max_ttl_secs": 300,
+    "enable_tracing": true,
+    "trace_output": "stdout"
+  }
+}
