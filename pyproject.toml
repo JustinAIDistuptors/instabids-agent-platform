@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "instabids"
+version = "0.1.0"
+description = "Multi-agent bidding platform for home improvement projects"
+authors = ["InstaBids AI Team"]
+readme = "README.md"
+packages = [{include = "instabids", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+google-adk = {extras = ["vertexai"], version = "~1.0.0"}
+google-genai = ">=1.16.1"
+protobuf = "==5.29.4"  # Critical: Pin to avoid pb2 import errors
+httpx = ">=0.28.1,<1"
+pydantic = "^2.11"
+supabase = "^2.10.0"
+fastapi = "^0.115.0"
+uvicorn = {extras = ["standard"], version = "^0.34.0"}
+openai = "^1.35.0"
+pillow = "^10.4.0"  # For image processing
+python-multipart = "^0.0.12"  # For file uploads
+aiofiles = "^24.1.0"
+python-dotenv = "^1.0.1"
+tenacity = "^9.0.0"  # For retry logic
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.0"
+pytest-asyncio = "^0.24.0"
+pytest-cov = "^5.0.0"
+black = "^24.10.0"
+flake8 = "^7.1.0"
+mypy = "^1.13.0"
+pre-commit = "^4.0.0"
+ipython = "^8.29.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = "--strict-markers --tb=short"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["src/instabids"]
+omit = ["*/tests/*", "*/migrations/*"]
